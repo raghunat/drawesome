@@ -1,41 +1,50 @@
+import {canvas}
 // Contains JS class with methods to store, diff, and recognize
 //   user interaction events with a canvas
 class Strokes {
-
-  constructor() {
-    // Store all strokes locally within a JSON object
-      var strokeData = {};
-  };
+  allStrokes = [];
 
   // Recognize interactions
-  getDraw() {
+  static getDraw() {
     // Store stroke as JSON object
     var stroke = {
       color: "",
       tool: "",
-      startPosition: "",
-      movementData: ""
+      movementData: []
     };
     // Get color
+
     // Get tool/width
-    // Get Start position (offsetLeft, offsetTop)
     // Get movement data (addClick(offsetLeft, offsetTop))
     return stroke;
   };
 
   // Be able to interpret interactions and export/store them
-  storeDraw(stroke) {
+  static storeDraw(stroke) {
     // Push stroke to allStrokes
-    allStrokes += JSON.stringify(stroke);
+    allStrokes.push(stroke);
 
     // Save array of strokes locally
   };
 
   // For test purposes, make them repeat on separate canvas
-  replicateDraw(stroke) {
+  static redraw() {
+    let canvas = document.querySelector('#canvas');
+    let context = canvas.getContext('2d');
     // On canvas, run strokes one object at a time
     // Strokes should run right after stroke is drawn
     //  not all at same time
-
   };
 };
+
+
+Strokes.storeDraw({
+
+});
+Strokes.storeDraw({
+
+});
+Strokes.storeDraw({
+
+});
+Strokes.redraw();

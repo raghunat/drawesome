@@ -4,10 +4,16 @@
     <meta charset="utf-8">
     <title>Stokes Test</title>
     <script src="strokes.js"></script>
-  </head>
-  <body>
-    <script type="text/javascript">
+    <script>
       var strokeData = new Strokes();
     </script>
-  </body>
+  </head>
+    <body ng-app="directivesModule" ng-controller="canvasController">
+      <script src="Canvas References/node_modules/angular/angular.js"></script>
+      <script src="Canvas References/canvas.js"></script>
+      <script src="Canvas References/canvas.directive.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+      <custom-canvas>
+      </custom-canvas>
+    </body>
 </html>
