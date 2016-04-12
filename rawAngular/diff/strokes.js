@@ -4,39 +4,43 @@ import {canvas}
 class Strokes {
   allStrokes = [];
 
-  // Recognize interactions
-  static getDraw() {
-    // Store stroke as JSON object
-    var stroke = {
-      color: "",
-      tool: "",
-      movementData: []
-    };
-    // Get color
+  static storeStroke(stroke) {
+    let newStroke = Strokes.allStrokes.find(s => {
+      if (s.color !== stroke.color || s.tool !== stroke.tool) {
+        return false;
+      }
+      let found = false;
+      for (var i = 0; i < s.stroke.movementData.length; i++) {
+        let dataPoint[0] = s.stroke.movementData[i];
+        if (dataPoint[0] === stroke.movementData[i][0] && dataPoint[1] === stroke.movementData[i][1]) {
+          continue;
+        } else {
+          found = false;
+          break;
+        }
+      }
+      if (!found) {
+        return s;
+      }
+    });
 
-    // Get tool/width
-    // Get movement data (addClick(offsetLeft, offsetTop))
-    return stroke;
-  };
-
-  // Be able to interpret interactions and export/store them
-  static storeDraw(stroke) {
-    // Push stroke to allStrokes
-    allStrokes.push(stroke);
-
-    // Save array of strokes locally
-  };
+    if (newStroke) {
+      Strokes.allStrokes.push(newStroke);
+    }
+  }
 
   // For test purposes, make them repeat on separate canvas
   static redraw() {
     let canvas = document.querySelector('#canvas');
     let context = canvas.getContext('2d');
+    // Get stroke object properties
+
+
     // On canvas, run strokes one object at a time
     // Strokes should run right after stroke is drawn
     //  not all at same time
   };
-};
-
+}
 
 Strokes.storeDraw({
 
