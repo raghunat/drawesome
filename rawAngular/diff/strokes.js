@@ -1,7 +1,6 @@
 // TODO
 //  May need to include canvas file for color and tool (if just doing strokes,
 //    will need to change code to just get strokes themselves)
-
 // Contains JS class with methods to store, diff, and recognize
 //   user interaction events with a canvas
 class Strokes {
