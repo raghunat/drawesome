@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="yourClass.js"></script>
+</head>
+
+<body>
+
+    <div style="background: blue; height:400px; width:400px;">
+
+    </div>
+    <script type="text/javascript">
+        var div = document.querySelector('div');
+        var myClass = new SomeClass();
+        div.onmousedown = myClass.startStroke;
+        div.onmouseup = myClass.endStroke;
+        div.onmousemove = myClass.updateStroke;
+    </script>
+</body>
+
+</html>
