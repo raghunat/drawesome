@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var crypto = require('crypto');
 path = require('path');
 var Datastore = require('nedb'),
 // Create/Initialize Database
@@ -9,7 +10,7 @@ userdb = new Datastore({
 	filename: 'users.nedb'
 });
 
-var crypto = require('crypto');
+
 // use one-way hashing algorithm
 // Will need to encrypt password with a hashing algorithm
 function hashPassword(user) {
@@ -23,6 +24,7 @@ userdb.loadDatabase();
 
 // **** Routes ****
 
+
 // POST to create new users
 app.post('/users', function (req, res) {
 	console.log("Got a POST request for a new user");
@@ -34,7 +36,6 @@ app.post('/users', function (req, res) {
            console.log(query);
            // insert
            userdb.insert(query);
-
          });
 
 	// Will need to encrypt password with a hashing algorithm
@@ -61,9 +62,7 @@ app.get('/users', function (req, res) {
         // users is an array containing all user objects
         res.send(users);
   });
-
 })
-
 
 // GET request for a single user by id #
 app.get('/users/:id', function (req, res) {
@@ -73,7 +72,6 @@ app.get('/users/:id', function (req, res) {
     res.send(doc);
   });
 })
-
 
 // PUT request for a user update
 app.put('/users/:id', function (req, res) {
@@ -108,11 +106,17 @@ app.delete('/users/:id', function (req, res) {
 	});
 })
 
-
 // Set up server to listen on a port
-var server = app.listen(8081, function () {
-	var host = server.address().address
-	var port = server.address().port
+var http = require('http');
+var server = express();
+var fullServer = http.Server(server);
+var io = require('socket.io')(fullServer);
 
-	console.log("Example app listening at http://%s:%s", host, port)
-})
+
+server.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+fullServer.listen(8081, function() {
+  console.log('Listening on port 8081');
+});  // end connect to server
