@@ -4,11 +4,15 @@
 // Contains JS class with methods to store, diff, and recognize
 //   user interaction events with a canvas
 class Strokes {
-  // Array of all JSON stroke data
-  allStrokes = [];
+
+  constructor(){
+    // Array of all JSON stroke data
+    var allStrokes = [];
+  }
 
   // Function to interpret stroke data for other functions to user
   static getStroke() {
+
     // Stroke in JSON format
     var stroke = {
       color: "",
@@ -24,9 +28,9 @@ class Strokes {
     dragging = false;
 
     //When the mouse is clicked
-    canvas.mousedown(function(e){
-      stroke.color = curColor;
-      stroke.tool = curTool;
+    $('#canvas').mousedown(function(e){
+      stroke.color = $('#canvas').curColor;
+      stroke.tool = $('#canvas').curTool;
       mouseX = e.pageX - this.offsetLeft;
       mouseY = e.pageY - this.offsetTop;
 
@@ -35,7 +39,7 @@ class Strokes {
     });
 
     //Records drawing when mouse is held
-    canvas.mousemove(function(e){
+    $('#canvas').mousemove(function(e){
       if(dragging){
         mouseX = e.pageX - this.offsetLeft;
         mouseY = e.pageY - this.offsetTop;
@@ -44,14 +48,16 @@ class Strokes {
     });
 
     //When mouse is unclicked
-    canvas.mouseup(function(e){
+    $('#canvas').mouseup(function(e){
       dragging = false;
     });
 
     //When mouse leaves the canvas
-    canvas.mouseleave(function(e){
+    $('#canvas').mouseleave(function(e){
       dragging = false;
     });
+
+    console.log(stroke);
   }
 
   // Check to see if stroke is already in array, if not add it to array
@@ -62,7 +68,7 @@ class Strokes {
       }
       let found = false;
       for (var i = 0; i < s.stroke.movementData.length; i++) {
-        let dataPoint[0] = s.stroke.movementData[i];
+        // let dataPoint[0] = s.stroke.movementData[i];
         if (dataPoint[0] === stroke.movementData[i][0] && dataPoint[1] === stroke.movementData[i][1]) {
           continue;
         } else {
@@ -93,13 +99,16 @@ class Strokes {
   };
 }
 
-Strokes.storeDraw({
-
-});
-Strokes.storeDraw({
-
-});
-Strokes.storeDraw({
-
-});
-Strokes.redraw();
+// Strokes.storeDraw({
+//
+// });
+//
+// Strokes.storeDraw({
+//
+// });
+//
+// Strokes.storeDraw({
+//
+// });
+//
+// Strokes.redraw();

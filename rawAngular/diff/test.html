@@ -6,6 +6,7 @@
     <script src="strokes.js"></script>
     <script>
       var strokeData = new Strokes();
+
     </script>
   </head>
     <body ng-app="directivesModule" ng-controller="canvasController">
@@ -13,7 +14,7 @@
       <script src="Canvas References/canvas.js"></script>
       <script src="Canvas References/canvas.directive.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-      <custom-canvas>
+      <custom-canvas onmousedown="Strokes.getStroke()">
       </custom-canvas>
     </body>
 </html>
