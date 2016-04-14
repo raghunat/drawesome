@@ -19,4 +19,12 @@ angular.module('app.controllers', [])
 .controller('moreInformationCtrl', function($scope) {
 
 })
+   
+.controller('mainCtrl', function($scope) {
+
+})
+   
+.controller('createBoardCtrl', function($scope) {
+
+})
  

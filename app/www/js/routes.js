@@ -10,7 +10,7 @@ angular.module('app.routes', [])
 
 
 
-.state('loginPage', {
+  .state('loginPage', {
     url: '/login',
     templateUrl: 'templates/loginPage.html',
     controller: 'loginPageCtrl'
@@ -28,12 +28,6 @@ angular.module('app.routes', [])
     controller: 'drawesomeCtrl'
   })
 
-  // .state('splash', {
-  //   url: '/',
-  //   templateUrl: 'templates/',
-  //   controller: 'drawesomeCtrl'
-  // })
-
   .state('myProfile', {
     url: '/profile',
     templateUrl: 'templates/myProfile.html',
@@ -46,8 +40,19 @@ angular.module('app.routes', [])
     controller: 'moreInformationCtrl'
   })
 
-// loads drawesome.html - '/splash'
-// '/' - will load index.html
+  .state('main', {
+    url: '/main',
+    templateUrl: 'templates/main.html',
+    controller: 'mainCtrl'
+  })
+
+  .state('createBoard', {
+    url: '/create',
+    templateUrl: 'templates/createBoard.html',
+    controller: 'createBoardCtrl'
+  })
+
+//Loads index.html
 $urlRouterProvider.otherwise('/')
 
 
