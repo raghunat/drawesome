@@ -1,0 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<html>
+<!-- Login App -->
+  <body ng-app="loginApp" ng-controller="loginCtrl">
+     <form>
+      <input ng-model="user.username" type="text" placeholder="username"/>
+      <input ng-model="user.password" type="password" placeholder="password"/>
+     </form>
+     <button class="button" ng-click="login()"> Login</button>
+
+  </body>
+
+</html>
+
+<script>
+var loginApp = angular.module("loginApp", []);
+var url = 'http://127.0.0.1:8081/users/?username='
+
+loginApp.controller("loginCtrl", function($scope, $http){
+
+  // Creates a user object
+  $scope.user = {};
+  $scope.data = [];
+
+    // What happens when the user hits the login button
+  $scope.login = function() {
+    // When the server is running, this will GET the username input on the form
+    $http.get(url + $scope.user.username).then(function(result) {
+      // $scope.data holds the results
+      $scope.data = result.data;
+
+      // REMOVE -- this is just to show that the database entry is being
+      // accessed properly when a valid username is entered (bobsample404)
+      console.log($scope.data);
+
+      // This holds the hashed password from the database
+    var inputPass = $scope.user.password;
+    // This is where the input password should be sent to the server to be
+    // hashed and compared to the database value?
+
+    });
+  };
+});
+
+</script>
+
+</div>
