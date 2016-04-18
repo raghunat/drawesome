@@ -9,7 +9,10 @@ class StrokeManager {
     startStroke() {
         this.started = true;
         this.currentStrokeEvents = {
-          color: event.curColor,
+          color: returnColor, // changed from event.curColor to returnColor
+                              // because I could not for the life of me
+                              // get event.curColor to show anything but
+                              // undefined
           tool: event.curTool,
           positions: [{x: event.clientX, y: event.clientY}]
         };

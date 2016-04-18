@@ -1,5 +1,13 @@
 var canvas = angular.module('directivesModule', []);
 
+// For whatever reason, I had to declare a separate variable outside of the
+// controller to store the color because whatever I did inside the controller
+// wasn't transferring properly to strokes.js
+// See lines 81 and 82 for the code implementation
+
+var returnColor = undefined;
+var i = 0;
+
 canvas.controller('canvasController', ['$scope', function ($scope) {
   var canvasWidth = 220;
   var canvasHeight = 490;
@@ -70,8 +78,10 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     clickY.push(y);
     clickDrag.push(dragging);
     clickColor.push(curColor);
-
+    returnColor = clickColor[i];
+    i++;
   }
+
   //Event listeners for html buttons
   document.getElementById("clearCanvas").addEventListener("click", clearSetUp);
   document.getElementById("redColor").addEventListener("click", function(){changeColor(colorRed)});
