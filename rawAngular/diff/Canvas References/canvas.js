@@ -1,8 +1,28 @@
 var canvas = angular.module('directivesModule', []);
 
+// 0.8.1: ERRORS FIXED:
+// When "Clear" is clicked on the canvas, the clickColor array is redeclared
+// as a near-empty array, with "CLEARED" being its only memeber. Now, when addClick
+// is called, an if statement checks to see if clickColor[0] == "CLEARED". If
+// it does, i (the variable used on line 93 to give returnColor a value, which
+// is used in strokes.js) is set to 1. This makes sure that i is always set to
+// the correct value, even if "Clear" is clicked on the canvas (this was previously
+// causing an error where clickColor was reset but i was not, resulting in returnColor
+// becoming undefined)
+
+// 0.7: ERRORS FIXED:
+// For whatever reason, I had to declare a separate variable outside of the
+// controller to store the color because whatever I did inside the controller
+// wasn't transferring properly to strokes.js
+// See lines 81 and 82 for the code implementation
+
+var returnColor = undefined;
+var returnTool = undefined;
+var i = 0;
+
 canvas.controller('canvasController', ['$scope', function ($scope) {
-  var canvasWidth = 220;
-  var canvasHeight = 490;
+  var canvasWidth = 500;
+  var canvasHeight = 500;
 
   //Colors
   var colorRed = "#FF0000";
@@ -70,8 +90,16 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     clickY.push(y);
     clickDrag.push(dragging);
     clickColor.push(curColor);
-
+    clickTool.push(curTool);
+    if (clickColor[0] == "CLEARED")
+    {
+      i = 1;
+    }
+    returnColor = clickColor[i];
+    returnTool = clickTool[i];
+    i++;
   }
+
   //Event listeners for html buttons
   document.getElementById("clearCanvas").addEventListener("click", clearSetUp);
   document.getElementById("redColor").addEventListener("click", function(){changeColor(colorRed)});
@@ -87,7 +115,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   		clickY = new Array();
   		clickDrag = new Array();
       clickDrag = new Array();
-      clickColor = new Array();
+      clickColor = new Array("CLEARED");
   		clearCanvas();
   }
 
@@ -117,6 +145,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       context.lineTo(clickX[i], clickY[i]);
       context.closePath();
       context.strokeStyle = clickColor[i];
+      context.strokeStyle = clickTool[i];
       context.stroke();
     }
   }

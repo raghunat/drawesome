@@ -1,114 +1,50 @@
-// TODO
-//  May need to include canvas file for color and tool (if just doing strokes,
-//    will need to change code to just get strokes themselves)
-// Contains JS class with methods to store, diff, and recognize
-//   user interaction events with a canvas
-class Strokes {
+class StrokeManager {
 
-  constructor(){
-    // Array of all JSON stroke data
-    var allStrokes = [];
+  constructor() {
+      this.continue = false;
+      this.returnResults = false;
+      this.currentStrokeEvents = [];
+      this.allStrokes = []
   }
 
-  // Function to interpret stroke data for other functions to user
-  static getStroke() {
-
-    // Stroke in JSON format
-    var stroke = {
-      color: "",
-      tool: "",
-      movementData: []
-    };
-    //******If just using "screen" for input, need to change querySelector and
-    //******  variables using mouse methods
-    // Get canvas for input
-    var canvas = document.querySelector('#canvas');
-    // Mouse position variables
-    var mouseX, mouseY,
-    dragging = false;
-
-    //When the mouse is clicked
-    $('#canvas').mousedown(function(e){
-      stroke.color = $('#canvas').curColor;
-      stroke.tool = $('#canvas').curTool;
-      mouseX = e.pageX - this.offsetLeft;
-      mouseY = e.pageY - this.offsetTop;
-
-      stroke.movementData.push(mouseX,mouseY);
-      dragging = true;
-    });
-
-    //Records drawing when mouse is held
-    $('#canvas').mousemove(function(e){
-      if(dragging){
-        mouseX = e.pageX - this.offsetLeft;
-        mouseY = e.pageY - this.offsetTop;
-        stroke.movementData.push(mouseX,mouseY);
-      }
-    });
-
-    //When mouse is unclicked
-    $('#canvas').mouseup(function(e){
-      dragging = false;
-    });
-
-    //When mouse leaves the canvas
-    $('#canvas').mouseleave(function(e){
-      dragging = false;
-    });
-
-    console.log(stroke);
-  }
-
-  // Check to see if stroke is already in array, if not add it to array
-  static storeStroke(stroke) {
-    let newStroke = Strokes.allStrokes.find(s => {
-      if (s.color !== stroke.color || s.tool !== stroke.tool) {
-        return false;
-      }
-      let found = false;
-      for (var i = 0; i < s.stroke.movementData.length; i++) {
-        // let dataPoint[0] = s.stroke.movementData[i];
-        if (dataPoint[0] === stroke.movementData[i][0] && dataPoint[1] === stroke.movementData[i][1]) {
-          continue;
-        } else {
-          found = false;
-          break;
-        }
-      }
-      if (!found) {
-        return s;
-      }
-    });
-
-    if (newStroke) {
-      Strokes.allStrokes.push(newStroke);
+  startStroke() {
+    if (event.target.id == 'canvas') {
+      this.continue = true;
+      this.returnResults = true;
+      this.currentStrokeEvents = {
+        color: returnColor,
+        tool: returnTool,
+        positions: [{x: event.clientX, y: event.clientY}]
+      };
+    } else {
+      this.continue = false;
+      this.returnResults = false;
+      this.currentStrokeEvents = null;
     }
   }
 
-  // Draw all strokes on canvas
-  static redraw() {
-    let canvas = document.querySelector('#canvas');
-    let context = canvas.getContext('2d');
-    // Get stroke object properties
+  updateStroke() {
+      if (event.target.id != 'canvas') {
+        this.continue = false;
+      }
+      if (this.continue) {
+        this.currentStrokeEvents.positions.push({x: event.clientX, y: event.clientY});
+      }
+  }
 
-
-    // On canvas, run strokes one object at a time
-    // Strokes should run right after stroke is drawn
-    //  not all at same time
-  };
+  endStroke() {
+    if (this.returnResults){
+      if (this.allStrokes == null) {
+        this.allStrokes = [this.currentStrokeEvents];
+      } else {
+      this.allStrokes.push(this.currentStrokeEvents);
+      }
+      this.continue = false;
+      console.log('');
+      console.log('Latest Stroke: ');
+      console.log(this.currentStrokeEvents);
+      console.log('Array of all strokes: ')
+      console.log(this.allStrokes);
+    }
+  }
 }
-
-// Strokes.storeDraw({
-//
-// });
-//
-// Strokes.storeDraw({
-//
-// });
-//
-// Strokes.storeDraw({
-//
-// });
-//
-// Strokes.redraw();
