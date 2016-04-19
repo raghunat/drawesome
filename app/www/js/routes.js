@@ -52,6 +52,12 @@ angular.module('app.routes', [])
     controller: 'createBoardCtrl'
   })
 
+  .state('board', {
+    url: '/board',
+    templateUrl: 'templates/board.html',
+    controller: 'boardCtrl'
+  })
+
 //Loads index.html
 $urlRouterProvider.otherwise('/')
 

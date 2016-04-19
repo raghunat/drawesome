@@ -28,3 +28,6 @@ angular.module('app.controllers', [])
 
 })
  
+ .controller('boardCtrl', function($scope) {
+
+ })
