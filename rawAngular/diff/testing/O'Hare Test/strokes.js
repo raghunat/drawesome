@@ -8,7 +8,7 @@ class StrokeManager {
   }
 
   startStroke() {
-    if (event.target.id === 'canvas') {
+    if (event.target.id == 'canvas') {
       this.continue = true;
       this.returnResults = true;
       this.currentStrokeEvents = {
@@ -16,22 +16,24 @@ class StrokeManager {
         tool: event.curTool,
         positions: [{x: event.clientX, y: event.clientY}]
       };
+    } else {
+      this.continue = false;
+      this.returnResults = false;
+      this.currentStrokeEvents = null;
     }
   }
 
-  updateStroke(event) {
-      if (event.target.id !== 'canvas') {
-        console.log('OFF CANVAS');
+  updateStroke() {
+      if (event.target.id != 'canvas') {
         this.continue = false;
       }
       if (this.continue) {
-        console.log('RECORDING');
         this.currentStrokeEvents.positions.push({x: event.clientX, y: event.clientY});
       }
   }
 
   endStroke() {
-    if (this.continue || this.returnResults){
+    if (this.returnResults){
       if (this.allStrokes == null) {
         this.allStrokes = [this.currentStrokeEvents];
       } else {
