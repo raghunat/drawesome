@@ -96,7 +96,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       i = 1;
     }
     returnColor = clickColor[i];
-    // returnTool = clickTool[i];  TOOLS DON'T EXIST YET
+    returnTool = clickTool[i];
     i++;
   }
 

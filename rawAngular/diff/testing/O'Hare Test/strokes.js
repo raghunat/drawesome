@@ -13,7 +13,7 @@ class StrokeManager {
       this.returnResults = true;
       this.currentStrokeEvents = {
         color: returnColor,
-        tool: event.curTool,
+        tool: returnTool,
         positions: [{x: event.clientX, y: event.clientY}]
       };
     } else {
