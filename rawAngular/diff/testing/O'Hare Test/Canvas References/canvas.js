@@ -1,5 +1,16 @@
 var canvas = angular.module('directivesModule', []);
 
+// 0.8.1: ERRORS FIXED:
+// When "Clear" is clicked on the canvas, the clickColor array is redeclared
+// as a near-empty array, with "CLEARED" being its only memeber. Now, when addClick
+// is called, an if statement checks to see if clickColor[0] == "CLEARED". If
+// it does, i (the variable used on line 93 to give returnColor a value, which
+// is used in strokes.js) is set to 1. This makes sure that i is always set to
+// the correct value, even if "Clear" is clicked on the canvas (this was previously
+// causing an error where clickColor was reset but i was not, resulting in returnColor
+// becoming undefined)
+
+// 0.7: ERRORS FIXED:
 // For whatever reason, I had to declare a separate variable outside of the
 // controller to store the color because whatever I did inside the controller
 // wasn't transferring properly to strokes.js
@@ -80,8 +91,12 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     clickDrag.push(dragging);
     clickColor.push(curColor);
     clickTool.push(curTool);
+    if (clickColor[0] == "CLEARED")
+    {
+      i = 1;
+    }
     returnColor = clickColor[i];
-    returnTool = clickTool[i];
+    // returnTool = clickTool[i];  TOOLS DON'T EXIST YET
     i++;
   }
 
@@ -100,7 +115,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   		clickY = new Array();
   		clickDrag = new Array();
       clickDrag = new Array();
-      clickColor = new Array();
+      clickColor = new Array("CLEARED");
   		clearCanvas();
   }
 
