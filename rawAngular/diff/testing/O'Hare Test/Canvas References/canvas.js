@@ -6,11 +6,12 @@ var canvas = angular.module('directivesModule', []);
 // See lines 81 and 82 for the code implementation
 
 var returnColor = undefined;
+var returnTool = undefined;
 var i = 0;
 
 canvas.controller('canvasController', ['$scope', function ($scope) {
-  var canvasWidth = 220;
-  var canvasHeight = 490;
+  var canvasWidth = 500;
+  var canvasHeight = 500;
 
   //Colors
   var colorRed = "#FF0000";
@@ -78,7 +79,9 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     clickY.push(y);
     clickDrag.push(dragging);
     clickColor.push(curColor);
+    clickTool.push(curTool);
     returnColor = clickColor[i];
+    returnTool = clickTool[i];
     i++;
   }
 
@@ -127,6 +130,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       context.lineTo(clickX[i], clickY[i]);
       context.closePath();
       context.strokeStyle = clickColor[i];
+      context.strokeStyle = clickTool[i];
       context.stroke();
     }
   }
