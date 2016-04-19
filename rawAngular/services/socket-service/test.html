@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" charset="utf-8"></script>
+  <body>
+    <div ng-app="angularApp" ng-controller="angularCtrl">
+      <h1>{{title}}</h1>
+      <h2>{{baseAPIUrl}}</h2>
+      <label for="username">Username:</label>
+      <input type="text" ng-model="name" placeholder="Place username here">
+      <button ng-click="getOneUser()">Log in</button>
+      <pre>
+        {{notification}}
+      </pre>
+      <div ng-show="loggedIn">
+        <div>
+          <input type="text" ng-model="myMessage">
+          <button ng-click="sendMessage()">Send Message</button>
+        </div>
+        <div>
+          <p>Canvas goes here</p>
+          <button ng-click="updateCanvas()">Update Canvas</button>
+        </div>
+      </div>
+      <div>
+        <h4>Current Users</h4>
+        <ul>
+          <li ng-repeat="user in users track by $index">
+            {{user}}
+            <button type="button" ng-click="bootCount(user)">Boot?</button>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4>Message Log:</h4>
+        <ul>
+          <li ng-repeat="message in messages track by $index">
+            <b>{{message.name}}</b>
+            <span>{{message.message}}</span>
+          </li>
+        </ul>
+      </div>
+      <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+      <script>
+        var myApp = angular.module('angularApp', []);
+        var apiUrl = 'http://localhost:8081/';
+        var newapi;
+        var currUser;
+        var entry;
+        var socket = io();
+        myApp.controller('angularCtrl', function($scope, socketFactory) {
+
+          $scope.messages = [];
+          $scope.users = [];
+
+          $scope.title = 'Socket Service Testing';
+          $scope.baseAPIUrl = socketFactory.base;
+
+          $scope.getOneUser = function(){
+            currUser = $scope.name;
+            newapi = apiUrl+"users?username="+(currUser);
+            socketFactory.getUser(function(err, user){
+              if(user == ''){
+                $scope.notification = 'Invalid.  Reload and try again.';
+              } else {
+                $scope.loggedIn = true;
+                $scope.notification = 'Welcome to Drawesome!';
+                socket.emit('log in', currUser);
+              }
+            });
+          }
+          $scope.sendMessage = function(){
+            entry = {name: $scope.name, message: $scope.myMessage};
+            socketFactory.sendMessage();
+          }
+          $scope.bootCount = function(user){
+            socketFactory.bootUser(user);
+          }
+          $scope.updateCanvas = function(){
+            $scope.canTest = "Canvas goes here";
+            socketFactory.sendStroke();
+          }
+
+          socket.on('new member', function(user){
+            $scope.users.push(user);
+            $scope.$apply();
+          });
+
+          socket.on('new message', function(messageObj){
+            $scope.messages.push(messageObj);
+            $scope.$apply();
+          });
+
+          socket.on('remove user', function(user){
+            if (user == currUser) {
+              $scope.loggedIn = false;
+              $scope.messages = [];
+              $scope.users = [];
+              $scope.notification = '';
+            }
+            var index = $scope.users.indexOf(user);
+            if (index > -1) {
+                $scope.users.splice(index, 1);
+              $scope.$apply();
+            }
+          });
+        });
+
+        myApp.factory('socketFactory', function($http) {
+          return {
+            base: apiUrl,
+            getUser: function(callbackFunction){//User joining a room
+              $http.get(newapi).success(function(users){
+                callbackFunction(null,users);
+              }).error(function(error){
+                callbackFunction(error,null);
+              });
+            },
+            userLeave: function(){
+              socket.emit('disconnect', currUser);
+            },
+            sendMessage: function(){//user sending message
+              socket.emit('chat message', entry);
+            },
+            sendStroke: function(){//User drawing a stroke
+              //code from Team
+              socket.emit('draw stroke', function(){
+                //send a stroke out to the rest of the users
+              });
+            },
+            closeBoard: function(){
+              //code to close a new room
+              socket.emit('board close', function(){
+                //close a board
+              });
+            },
+            bootUser: function(user){
+              //code to boot a User from a room
+              socket.emit('user boot', user);
+            }
+          };
+        });
+      </script>
+    </div>
+  </body>
+</html>
