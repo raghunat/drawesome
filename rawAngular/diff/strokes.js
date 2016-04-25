@@ -1,3 +1,6 @@
+var strokesArray = []; // Full array of strokes - DOES NOT RESET when "clear" button is hit
+var strokesArrayCount = 0; // Value used when looping in arrayDraw function in canvas.js
+
 class StrokeManager {
 
   constructor() {
@@ -33,6 +36,7 @@ class StrokeManager {
   }
 
   endStroke() {
+    strokesArrayCount++;
     if (this.returnResults){
       if (this.allStrokes == null) {
         this.allStrokes = [this.currentStrokeEvents];
@@ -45,6 +49,8 @@ class StrokeManager {
       console.log(this.currentStrokeEvents);
       console.log('Array of all strokes: ')
       console.log(this.allStrokes);
+      strokesArray = this.allStrokes;
+      console.log(strokesArrayCount);
     }
   }
 }

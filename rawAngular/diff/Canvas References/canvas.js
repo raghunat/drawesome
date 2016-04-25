@@ -1,20 +1,14 @@
+// VERSION 0.1: 1. declared strokesArray[] (strokes.js) which holds all of the
+                // strokes, regardless of whether the user cleared them or not
+                // 2. declared strokesArrayCount (strokes.js) which is used while
+                // looping in arrayDraw function in canvas.js
+                // 3. added "Draw Again" button (diretive file) that's connected
+                // to the "arrayDraw" function (strokes.js). This function displays
+                // strokesArray[] on the console - now we have to link it to
+                // a drawing function so when the Draw Again button is clicked,
+                // everything in the array is automatically drawn onto the canvas
+
 var canvas = angular.module('directivesModule', []);
-
-// 0.8.1: ERRORS FIXED:
-// When "Clear" is clicked on the canvas, the clickColor array is redeclared
-// as a near-empty array, with "CLEARED" being its only memeber. Now, when addClick
-// is called, an if statement checks to see if clickColor[0] == "CLEARED". If
-// it does, i (the variable used on line 93 to give returnColor a value, which
-// is used in strokes.js) is set to 1. This makes sure that i is always set to
-// the correct value, even if "Clear" is clicked on the canvas (this was previously
-// causing an error where clickColor was reset but i was not, resulting in returnColor
-// becoming undefined)
-
-// 0.7: ERRORS FIXED:
-// For whatever reason, I had to declare a separate variable outside of the
-// controller to store the color because whatever I did inside the controller
-// wasn't transferring properly to strokes.js
-// See lines 81 and 82 for the code implementation
 
 var returnColor = undefined;
 var returnTool = undefined;
@@ -91,10 +85,11 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     clickDrag.push(dragging);
     clickColor.push(curColor);
     clickTool.push(curTool);
-    if (clickColor[0] == "CLEARED")
+    console.log("clickColor[0] is ", clickColor[0]);
+    /* if (clickColor[0] == "CLEARED")
     {
       i = 1;
-    }
+    } */
     returnColor = clickColor[i];
     returnTool = clickTool[i];
     i++;
@@ -107,6 +102,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   document.getElementById("yellowColor").addEventListener("click", function(){changeColor(colorYellow)});
   document.getElementById("greenColor").addEventListener("click", function(){changeColor(colorGreen)});
   document.getElementById("eraseColor").addEventListener("click", function(){changeColor(colorErase)});
+  document.getElementById("drawAgain").addEventListener("click", function(){arrayDraw(strokesArray)});
 
   //Drawing function
       //Canvas clear
@@ -115,18 +111,30 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   		clickY = new Array();
   		clickDrag = new Array();
       clickDrag = new Array();
-      clickColor = new Array("CLEARED");
+      clickColor = new Array();
+      i = 0;
   		clearCanvas();
   }
 
   function clearCanvas()
   {
   	context.clearRect(0, 0, canvasWidth, canvasHeight);
+    strokesArrayCount--;
   }
 
 
   function changeColor(color){
     curColor = color;
+    console.log("color in changeColor is ", curColor);
+    strokesArrayCount--;
+  }
+
+  function arrayDraw(strokesArray){
+    strokesArrayCount--;
+    for (var a = 0; a < strokesArrayCount; a++)
+    {
+        console.log(strokesArray[a]);
+    }
   }
 
   function redraw(){

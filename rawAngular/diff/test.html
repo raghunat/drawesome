@@ -15,7 +15,6 @@
     <script type="text/javascript">
         var canvas = document.querySelector('custom-canvas');
         var stroke = new StrokeManager();
-
         canvas.onmousedown = stroke.startStroke;
         canvas.onmousemove = stroke.updateStroke;
         canvas.onmouseup = stroke.endStroke;
