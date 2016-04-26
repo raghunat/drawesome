@@ -41,6 +41,8 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
           canvas = G_vmlCanvasManager.initElement(canvas);
   }
   context = canvas.getContext("2d");
+  context.clearRect(0,0, context.canvas.width, context.canvas.height);
+  context.save();
 
   //When the mouse is clicked
   $('#canvas').mousedown(function(e){
@@ -125,18 +127,26 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   }
 
   function arrayDraw(strokesArray){
+    console.log(strokesArray);
     strokesArrayCount--;
-    for (var a = 0; a < strokesArrayCount; a++)
-    {
-      for (var q = 0; q < positionCount; q++)
+    for (var a = 0; a < strokesArray.length; a++) {
+      for (var q = 0; q < strokesArray[a].length; q++)
       {
-        addClick(strokePositions[q].x, strokePositions[q].y, true);
+        if(q === 0) {
+          addClick(strokesArray[a][q].x-8, strokesArray[a][q].y-8, true);
+          context.strokeStyle = 0;
+          redraw();
+          context.restore();
+        } else {
+          addClick(strokesArray[a][q].x-8, strokesArray[a][q].y-8, true);
+          redraw();
+        }
       }
     }
   }
 
   function redraw(){
-    context.clearRect(0,0, context.canvas.width, context.canvas.height);
+    context.restore();
 
     context.lineJoin = "round";
     context.lineWidth = 5;
@@ -146,7 +156,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       if(clickDrag[i] && i){
         context.moveTo(clickX[i-1], clickY[i-1]);
       }else{
-        context.moveTo(clickX[i]-1, clickY[i]);
+        context.moveTo(clickX[i]-1, clickY[i]-1);
       }
       context.lineTo(clickX[i], clickY[i]);
       context.closePath();
@@ -155,6 +165,8 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       context.stroke();
     }
   }
+
+
 
   function downloadCanvas(link, canvasId, filename) {
       link.href = document.getElementById(canvasId).toDataURL();
