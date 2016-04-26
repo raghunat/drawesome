@@ -31,7 +31,7 @@ angular.module('app.controllers', [])
 .controller('boardCtrl', function($scope) {
 
 })
-//
+
 .controller('canvasController', ['$scope', function ($scope) {
   var canvasWidth = 220;
   var canvasHeight = 490;
