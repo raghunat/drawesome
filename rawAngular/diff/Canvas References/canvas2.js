@@ -130,7 +130,7 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     {
       for (var q = 0; q < positionCount; q++)
       {
-        addClick(strokePositions[q].x, strokePositions[q].y, true);
+        addClick(strokePositions[q].x, strokePositions[q].y)
       }
     }
   }
