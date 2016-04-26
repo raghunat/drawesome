@@ -51,6 +51,7 @@ angular.module('app.routes', [])
     templateUrl: 'templates/createBoard.html',
     controller: 'createBoardCtrl'
   })
+  
   .state('board', {
     url: '/board',
     templateUrl: 'templates/board.html',

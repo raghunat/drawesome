@@ -7,7 +7,12 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angular/angular.js" charset="utf-8"></script>
+    <!-- <script src="lib/angular/angular.js" charset="utf-8"></script> -->
+
+    <!-- add jquery here - in order to draw-->
+    <!-- if added before ionic.js - creates errors  -->
+    <!-- if added after our custom js - creates errors  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -22,7 +27,6 @@
     <script src="js/services.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/strokes.js"></script>
-
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
   <div>

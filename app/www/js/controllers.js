@@ -28,13 +28,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('boardCtrl', function($scope) {
-
-})
-
-.controller('canvasController', ['$scope', function ($scope) {
-  var canvasWidth = 220;
-  var canvasHeight = 490;
+.controller('boardCtrl', ['$scope', function ($scope) {
+  var canvasWidth = 400;
+  var canvasHeight = 400;
 
   //Colors
   var colorRed = "#FF0000";
