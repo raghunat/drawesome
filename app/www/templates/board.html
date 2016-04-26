@@ -1,21 +1,26 @@
-<ion-view title="Board" id="page8">
+<ion-view title="Board"id="page8">
+
+  <ion-nav-buttons side="right">
+        <button class="button icon ion-person-stalker" ng-click="doSomething()">
+        </button>
+    </ion-nav-buttons>
+
     <ion-content padding="true" class="has-header">
-        <h1 id="board-heading2" style="color:#000000;">
-            Board        </h1>
+        <h3 style="text-align:center;" >Theme or Location</h3>
         <div>
             <p>Canvas below...</p>
             <canvas></canvas>
         </div>
-        <div class="spacer" style="height: 100px;"></div>
-        <div class="button-bar">
-            <button id="board-button17" class="button button-positive  button-block"><a class="button button-icon icon ion-settings"></a></button>
-            <button id="board-button18" class="button button-positive  button-block">Undo</button>
-            <button id="board-button19" class="button button-positive  button-block">Redo</button>
-<!--             </div>
-            <div class="button-bar"> -->
-            <button id="board-button20" class="button button-positive  button-block">Marker</button>
-            <button id="board-button10" class="button button-positive  button-block">Pencil</button>
-            <button id="board-button16" class="button button-positive  button-block">Eraser</button>
+        <div class="bar bar-footer">
+          <div class="button-bar">
+            <button ng-click="doSomething1()" class="button button-positive icon ion-android-color-palette">
+            </button>
+            <button ng-click="doSomething2()" class="button button-positive icon ion-ios-undo"></button>
+            <button ng-click="doSomething3()" class="button button-positive icon ion-ios-redo"></button>
+            <button ng-click="doSomething4()" class="button button-positive icon ion-paintbrush"></button>
+            <button ng-click="doSomething5()" class="button button-positive icon ion-edit"></button>
+            <button ng-click="doSomething6()" class="button button-positive icon ion-ios-close"></button>
+          </div>
         </div>
     </ion-content>
 </ion-view>
