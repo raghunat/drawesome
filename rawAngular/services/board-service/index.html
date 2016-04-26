@@ -1,0 +1,129 @@
+<!--//1. Make an index.html file that has a angular APP.
+//2. Makes a service that interacts with board API.
+//3. Connect the two. -->
+    <title> Angular Service </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="testCtrl.js"></script>
+
+    <div ng-app="myApp" ng-controller="testCtrl">
+      <pre>
+        {{error}}
+        {{boards}}
+      </pre>
+      <!-- Get's all boards -->
+      <button ng-click="getBoards()">Show Boards</button>
+
+      <!-- Get's boards by Id -->
+      <button ng-click="getBoardId()">Show Boards by Id</button>
+
+      <!-- Post's board -->
+      <button ng-click="postBoard()">Post Board</button>
+
+      <!-- Put's / Updates board -->
+      <button ng-click="putBoard()">Update Board</button>
+
+      <!-- Delete's board -->
+      <button ng-click="deleteBoard()">Delete Board</button>
+    </div>
+
+    <script>
+      var myApp = angular.module('myApp', []);
+
+      myApp.controller('testCtrl', function($scope, BoardService) {
+
+        $scope.getBoards = function() {
+          BoardService.getBoards(function(err, boards) {
+            $scope.error = err;
+            $scope.boards = boards;
+          });
+        };
+
+
+        $scope.getBoardId = function() {
+          BoardService.getBoardId({
+            id: '/9y9sjKGrKQhjSAgr'
+          },function(err, boards) {
+            $scope.error = err;
+            $scope.boards = boards;
+          });
+        };
+
+        $scope.postBoard = function() {
+          BoardService.postBoard({
+            name: 'Kyle',
+            theme: 'theme'
+          }, function(err, boards) {
+            $scope.error = err;
+            $scope.boards = boards;
+          });
+        };
+
+        $scope.putBoard = function() {
+          BoardService.putBoard({
+            name: '',
+            theme: ''
+          },function(err, boards) {
+            $scope.error = err;
+            $scope.boards = boards;
+          });
+        };
+
+        $scope.deleteBoard = function() {
+          BoardService.deleteBoard({
+            id: '9y9sjKGrKQhjSAgr'
+          },function(err, boards) {
+            $scope.error = err;
+            $scope.boards = boards;
+          });
+        };
+      });
+
+      myApp.factory('BoardService', function($http) {
+        var apiUrl = 'http://localhost:3000/';
+
+        // Gives back an object for controllers
+        // To use
+        return {
+          base: apiUrl,
+          getBoards: function(callbackFunction) {
+            // Making a GET request to http://localhost:3000/boards
+            $http.get(apiUrl + 'boards').success(function(boards) {
+              // Callback, with no error, and the list of boards
+              callbackFunction(null, boards);
+            }).error(function(error) {
+              // Callback with error
+              callbackFunction(error, null);
+            });
+          },
+          getBoardId: function(id, callbackFunction) {
+            $http.get(apiUrl + "boards" + '/9y9sjKGrKQhjSAgr').success(function(boards) {
+              callbackFunction(null, boards);
+            }).error(function(error) {
+              callbackFunction(error, null);
+            });
+          },
+          postBoard: function(params, callbackFunction) {
+            $http.post(apiUrl + "boards").success(function(boards) {
+              callbackFunction(null, boards);
+            }).error(function(error) {
+              callbackFunction(error, null);
+            });
+          },
+          putBoard: function(params, callbackFunction) {
+            $http.put(apiUrl + "boards" + '/9y9sjKGrKQhjSAgr').success(function(boards) {
+              callbackFunction(null, boards);
+            }).error(function(error) {
+              callbackFunction(error, null);
+            });
+          },
+          deleteBoard: function(id, callbackFunction) {
+            $http.delete(apiUrl + "boards" + '/9y9sjKGrKQhjSAgr').success(function(boards) {
+              callbackFunction(null, boards);
+            }).error(function(error) {
+              callbackFunction(error, null);
+            });
+          },
+        };
+      });
+    </script>
