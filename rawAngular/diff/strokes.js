@@ -33,7 +33,6 @@ class StrokeManager {
       }
       if (this.continue) {
         this.currentStrokeEvents.positions.push({x: event.clientX, y: event.clientY});
-        strokePositions = this.currentStrokeEvents.positions;
       }
   }
 
@@ -51,7 +50,7 @@ class StrokeManager {
       console.log(this.currentStrokeEvents);
       console.log('Array of all strokes: ')
       console.log(this.allStrokes);
-      strokesArray.push(strokePositions);
+      strokesArray = this.allStrokes;
     }
   }
 }

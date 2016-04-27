@@ -92,6 +92,12 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
     i++;
   }
 
+  function addArrPoint(x,y)
+  {
+    clickX.push(x);
+    clickY.push(y);
+  }
+
   //Event listeners for html buttons
   document.getElementById("clearCanvas").addEventListener("click", clearSetUp);
   document.getElementById("redColor").addEventListener("click", function(){changeColor(colorRed)});
@@ -127,26 +133,21 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
   }
 
   function arrayDraw(strokesArray){
-    console.log(strokesArray);
-    strokesArrayCount--;
     for (var a = 0; a < strokesArray.length; a++) {
-      for (var q = 0; q < strokesArray[a].length; q++)
+      context.strokeStyle = strokesArray[a].color;
+      context.strokeStyle = strokesArray[a].tool;
+      for (var q = 0; q < strokesArray[a].positions.length; q++)
       {
-        if(q === 0) {
-          addClick(strokesArray[a][q].x-8, strokesArray[a][q].y-8, true);
-          context.strokeStyle = 0;
-          redraw();
-          context.restore();
-        } else {
-          addClick(strokesArray[a][q].x-8, strokesArray[a][q].y-8, true);
-          redraw();
+        if (q !== strokesArray[a].positions.length-1) {
+          redrawFromArray(strokesArray[a].positions[q].x-8, strokesArray[a].positions[q].y-8,
+                          strokesArray[a].positions[q+1].x-8, strokesArray[a].positions[q+1].y-8);
         }
       }
     }
   }
 
   function redraw(){
-    context.restore();
+    //context.restore();
 
     context.lineJoin = "round";
     context.lineWidth = 5;
@@ -164,6 +165,17 @@ canvas.controller('canvasController', ['$scope', function ($scope) {
       context.strokeStyle = clickTool[i];
       context.stroke();
     }
+  }
+
+  function redrawFromArray(x1,y1,x2,y2){
+    context.lineJoin = "round";
+    context.lineWidth = 5;
+
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.closePath();
+    context.stroke();
   }
 
 
