@@ -1,19 +1,54 @@
-<ion-view title="Login Page" id="page1">
-    <ion-content padding="true" class="has-header">
-        <form class="list">
-            <div style="text-align:center;">
-                <img src="img/logo.PNG" width="100%" height="100%">
-            </div>
-            <label class="item item-input">
-                <span class="input-label">Username</span>
-                <input type="text" placeholder="">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Password</span>
-                <input type="password" placeholder="">
-            </label>
-            <a ui-sref="main" id="loginPage-button1" class="button button-positive  button-block">Login</a>
-            <a ui-sref="register" id="loginPage-button2" class="button button-stable  button-block">Register</a>
-        </form>
-    </ion-content>
-</ion-view>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- semantic-ui -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <ion-view title="Login Page" id="page1">
+        <ion-content padding="true" class="has-header">
+            <form class="list">
+                <div style="text-align:center;">
+                    <img src="img/logo.PNG" width="100%" height="100%">
+                </div>
+
+                <div class="ui two column middle aligned very relaxed stackable grid">
+                <div class="column">
+                  <div class="ui form">
+                    <div class="field">
+                      <label>Username</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="Username">
+                        <i class="user icon"></i>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label>Password</label>
+                      <div class="ui left icon input">
+                        <input type="password">
+                        <i class="lock icon"></i>
+                      </div>
+                    </div>
+                    <div style="width:100%;"ui-sref="main" class="ui blue submit button">Login</div>
+                  </div>
+                </div>
+                <div class="ui vertical divider">
+                  Or
+                </div>
+                <div class="center aligned column">
+                  <div style="width:100%;" ui-sref="register" class="ui green labeled icon button">
+                    <i class="signup icon"></i>
+                    Sign Up
+                  </div>
+                </div>
+              </div>
+
+            </form>
+        </ion-content>
+    </ion-view>
+  </body>
+</html>
