@@ -31,8 +31,8 @@ angular.module('app.controllers', [])
 .controller('boardCtrl', ['$scope', function($scope) {
   var screenWidth = screen.width;
   var screenHeight = screen.height;
-  var canvasWidth = screenWidth * 0.5;
-  var canvasHeight = screenHeight * 0.55;
+  var canvasWidth = screenWidth * .185;
+  var canvasHeight = screenHeight * 0.45;
 
   //Colors
   var colorRed = "#FF0000";
