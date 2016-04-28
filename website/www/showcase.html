@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawesome | Showcase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="css/showcase.css">
+  </head>
+  <body>
+    <!-- Menu Bar -->
+      <div class="ui secondary menu">
+        <a class="item" href="/">
+          <img class="logo" src="images/logo.png" alt="logo" />
+        </a>
+        <a class="item" href="/">
+          Home
+        </a>
+        <a class="item active" href="showcase.html">
+          Showcase
+        </a>
+        <a class="item" href="about.html">
+          About
+        </a>
+        <a class="item" href="how-to.html">
+          How To
+        </a>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui transparent icon input">
+              <input type="text" placeholder="Search...">
+              <i class="search link icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          <div class="container">
+            <div class="ui simple selection dropdown">
+              <input type="hidden" name="gender">
+              <i class="dropdown icon"></i>
+              <div class="default text">Filter</div>
+              <div class="menu">
+                <div class="item" data-value="Most Contributed" data-text="Most Contributed">
+                  Most Contributed
+                </div>
+                <div class="item" data-value="Highest Rated" data-text="Highest Rated">
+                  Highest Rated
+                </div>
+                <div class="item" data-value="Date Created" data-text="Date Created">
+                  Date Created
+                </div>
+                <div class="item" data-value="Views" data-text="Views">
+                  Views
+                </div>
+              </div>
+            </div>
+            <table class="ui celled table">
+              <tbody>
+                <tr>
+                  <td>
+                    <img class="avatar" src="images/avatar.png" alt="picture" width="40" height="50">
+                    <p class="name">Name</p>
+                    <p class="title">Title</p>
+                    <img class="showcase" src="images/showcase.png" alt="picture">
+                    <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:50px;top:50px;">
+
+                  </td>
+                  <td>
+                    <img class="avatar" src="images/avatar.png" alt="picture" width="40" height="50">
+                    <p class="name">Name</p>
+                    <p class="title">Title</p>
+                    <img class="showcase" src="images/showcase.png" alt="picture">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="avatar" src="images/avatar.png" alt="picture" width="40" height="50">
+                    <p class="name">Name</p>
+                    <p class="title">Title</p>
+                    <img class="showcase" src="images/showcase.png" alt="picture">
+                  </td>
+                  <td>
+                    <img class="avatar" src="images/avatar.png" alt="picture" width="40" height="50">
+                    <p class="name">Name</p>
+                    <p class="title">Title</p>
+                    <img class="showcase" src="images/showcase.png" alt="picture">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <script>
+          $('.ui.dropdown')
+            .dropdown()
+          ;
+          </script>
+    </body>

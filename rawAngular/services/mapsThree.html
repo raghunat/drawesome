@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Geolocation Angular Api</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" charset="utf-8"></script>
+<div ng-app='geoApp' ng-controller='myCtrl'>
+  {{lat}}, {{Lng}}, {{position}}
+
+</div>
+
+  <script>
+  var geoApp = angular.module('geoApp', []);
+
+  geoApp.controller('myCtrl',function($scope, getLocationService){
+
+
+    $scope.position = navigator.geolocation.watchPosition(getLocationService.getLocation);
+
+});
+
+  geoApp.factory('getLocationService', function(){
+
+    function getLocation(position){
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        var accuracy = position.coords.accuracy;
+        console.log(lat + ','+ lng + ',' + accuracy);
+        position = lat + ',' + lng;
+      return position;
+    }
+    return {
+      getLocation: getLocation
+    };
+});
+  </script>
+</html>

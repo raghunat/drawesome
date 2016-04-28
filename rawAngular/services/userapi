@@ -1,0 +1,85 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" charset="utf-8"></script>
+<!-- My Angular App -->
+<div ng-app="myApp" ng-controller="DemoCtrl">
+  <!--  -->
+  <h1>{{title}}</h1>
+  <h2>{{baseAPIUrl}} </h2>
+  <pre>
+    {{error}}
+    {{users}}
+  </pre>
+  <button ng-click="getAllUsers()">Show All Users</button>
+</div>
+
+<script>
+var myApp = angular.module('myApp', []);
+
+myApp.controller('DemoCtrl', function($scope, UserService) {
+  $scope.title = 'UserAPI Service Testing';
+  $scope.baseAPIUrl = UserService.base;
+
+  $scope.getAllUsers = function() {
+    UserService.getUsers(function(err, users) {
+      $scope.error = err;
+      $scope.users = users
+    });
+  };
+});
+
+myApp.factory('UserService', function($http) {
+  var apiUrl = 'http://localhost:8081/';
+
+  // Gives back an object for controllers
+  // To use
+  return {
+    base: apiUrl,
+    getUsers: function(callbackFunction) {
+      // Making a GET request to http://localhost:8081/users
+      $http.get(apiUrl + '/users').success(function(users) {
+        // Callback, with no error, and the list of users
+        callbackFunction(null, users);
+      }).error(function(error) {
+        // Callback with error
+        callbackFunction(error, null);
+      });
+    },
+    getUser: function (user, callbackFunction) {
+      $http.get(apiUrl + 'users/' + UserService).success(function(users) {
+        // Callback, with no error, and the list of users
+        callbackFunction(null, users);
+      }).error(function(error) {
+        // Callback with error
+        callbackFunction(error, null);
+      });
+    },
+    //Post User request
+      postUser: function (user, callbackFunction) {
+        $http.post(apiUrl + '/users', user).success(function(users) {
+          //call back with new user added
+          callbackFunction(null, users);
+        }).error(function(error) {
+          callbackFunction(error, null);
+        });
+      },
+      //Put user request
+      putUser: function(user, callbackFunction){
+        $http.put(apiUrl + 'users/' + user).success(function(users) {
+          //call back with user updated
+          callbackFunction(null, users);
+        }).error(function(error) {
+          //callback with error
+          callbackFunction(error,null);
+        });
+      },
+      deleteUser: function(user, callbackFunction){
+        $http.delete(apiUrl + 'users/' + user).success(function(users) {
+          //call back with user removed
+          callbackFunction(null, users);
+        }).error(function(error) {
+          //call back with error
+          callbackFunction(error,null);
+        });
+      }
+  };
+});
+</script>
