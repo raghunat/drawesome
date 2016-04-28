@@ -1,17 +1,32 @@
-<ion-view title="Create Board" id="page7">
-    <ion-content padding="true" class="has-header">
-        <form class="list"></form>
-        <form class="list">
-            <label class="item item-input" name="boardName">
-                <span class="input-label">Name of Board</span>
-                <input type="text" placeholder="">
-            </label>
-            <ion-checkbox name="feature1">Feature 1</ion-checkbox>
-            <ion-checkbox name="feature2">Feature 2</ion-checkbox>
-            <ion-checkbox name="feature3">Feature 3</ion-checkbox>
-        </form>
-        <form class="list"></form>
-        <a ui-sref="board" id="createBoard-button13" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block">Create Board!</a>
-        <!-- <button ui-sref="board" id="createBoard-button13" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block">Create Board!</button> -->
-    </ion-content>
-</ion-view>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title></title>
+      <!-- semantic-ui -->
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body ng-app="app">
+      <ion-view title="Create Board" id="page7">
+          <ion-content padding="true" class="has-header">
+              <form class="list"></form>
+              <form class="list">
+
+                  <div class="ui input" style="width:100%">
+                    <input type="text" placeholder="Name">
+                  </div>
+
+                  <div class="spacer" style="height: 10px;"></div>
+
+                  <ion-checkbox name="feature1" style="font-size:1em;">Feature 1</ion-checkbox>
+                  <ion-checkbox name="feature2" style="font-size:1em;">Feature 2</ion-checkbox>
+                  <ion-checkbox name="feature3" style="font-size:1em;">Feature 3</ion-checkbox>
+              </form>
+              <form class="list"></form>
+              <a ui-sref="board" id="createBoard-button13" style="width:100%" class="positive ui button button-balanced  button-block">Create Board</a>
+              <!-- <button ui-sref="board" id="createBoard-button13" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block">Create Board!</button> -->
+          </ion-content>
+      </ion-view>
+    </body>
+</html>
