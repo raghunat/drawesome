@@ -1,0 +1,9 @@
+#page6{
+  background: linear-gradient(to bottom right, #DDF0FE, #DEEDF9, #F1F6FA, #EAF1F6, #E4F4FF, #E3EBF1);
+}
+
+.button{
+  height: 50px !important;
+  font-size: 18px !important;
+  font-weight: normal !important;
+}
