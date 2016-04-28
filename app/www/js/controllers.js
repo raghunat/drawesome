@@ -6,9 +6,10 @@ angular.module('app.controllers', [])
 
 .controller('registerCtrl', function($scope,$http,$location) {
 
-    $scope.registerUser = function(){
+    $scope.registerUser = function(isValid){
       //test if passwords match
-      if($scope.password === $scope.confirmationPassword){
+
+      if(isValid){
         //create a user object
         var user= {
           name: $scope.name,
@@ -17,13 +18,14 @@ angular.module('app.controllers', [])
           username: $scope.username,
           password: $scope.password
         };
-        //not sure about what to do on these functions      
+        //not sure about what to do on these functions
         function successCallback(user){
           $scope.user = user;
           $location.path('/login');
         }
         function errorCallback(error){
           $scope.error = error;
+
         }
 
         //it makes the post call to the server (working)
@@ -31,13 +33,8 @@ angular.module('app.controllers', [])
           .success(successCallback)
           .error(errorCallback)
 
-      }else{ //check if the else stmt is necessary
-        // send the error message
       }
-
-
     }
-
 })
 
 .controller('drawesomeCtrl', function($scope) {

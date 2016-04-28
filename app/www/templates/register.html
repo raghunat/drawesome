@@ -1,34 +1,107 @@
+
 <ion-view title="Register" id="page2" >
+  <style>
+  /* CHANGE THIS CLASS FOR SEMANTIC UI ERROR */
+    .help-block{
+    color:red;
+  }
+</style>
     <ion-content padding="true" class="has-header">
-        <form class="list" ng-controller="registerCtrl" ng-submit="registerUser()">
+      <div class="" ng-if="error">
+          Something here
+      </div>
+        <form class="list" ng-controller="registerCtrl" name="userForm" ng-submit="registerUser(userForm.$valid)" novalidate>
             <ion-list>
+              <!-- NAME INPUT -->
+              <div ng-class="{ 'has-error': userForm.name.$touched && userForm.name.$invalid }">
                 <label class="item item-input">
                     <span class="input-label">Name</span>
-                    <input ng-model="name" type="text" placeholder="">
+                    <input  ng-model="name" name="name" type="text" placeholder="Type your name"
+                    ng-minlength="5"
+                    required>
                 </label>
+                <div class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched">
+                  <p ng-message="minlength">Your name is too short.</p>
+                  <p ng-message="required">Your name is required.</p>
+                </div>
+              </div>
+
+                <!-- EMAIL INPUT -->
+                <div ng-class="{ 'has-error': userForm.email.$touched && userForm.email.$invalid }">
+
                 <label class="item item-input">
                     <span class="input-label">Email</span>
-                    <input ng-model="email" type="email" placeholder="">
+                    <input ng-model="email" name="email" type="email" placeholder="example@email.com"
+                    ng-minlength="5"
+                    ng-maxlength="20"
+                    required>
                 </label>
+                <div class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched">
+                  <p ng-message="minlength">Your email is too short.</p>
+                  <p ng-message="maxlength">Your email is too long.</p>
+                  <p ng-message="required">Your email is required.</p>
+                  <p ng-message="email">Your should enter a valid email.</p>
+                </div>
+
+                <!-- PHONE NUMBER INPUT -->
+                <div ng-class="{'has-error': userForm.phone.$touched && userForm.phone.$invalid}">
+
                 <label class="item item-input">
-                    <span class="input-label">Phone #</span>
-                    <input ng-model="phone" type="tel" placeholder="">
+                    <span class="input-label">Phone Number</span>
+                    <input ng-model="phone" type="tel" name="phone" placeholder="(000) 000-0000"
+                     ng-minlength="10" ng-maxlength="10">
                 </label>
+                <div class="help-block" ng-messages="userForm.phone.$error" ng-if="userForm.phone.$touched">
+                  <p ng-message="minlength">Your phone number must have at least 10 digits.</p>
+                  <p ng-message="maxlength">Your phone number must have the maximum of 10 digits.</p>
+                </div>
+              </div>
+
+                <!-- USERNAME INPUT -->
+                <div ng-class="{'has-error': userForm.username.$touched && userForm.username.$invalid}">
                 <label class="item item-input">
                     <span class="input-label">Username</span>
-                    <input ng-model="username" type="text" placeholder="">
+                    <input ng-model="username" type="text" name="username" placeholder="Type a username"
+                    ng-minlength="3"
+                    ng-maxlength="15"
+                    required>
                 </label>
+                <div class="help-block" ng-messages="userForm.username.$error" ng-if="userForm.username.$touched">
+                  <p ng-message="minlength">Your username is too short!</p>
+                  <p ng-message="maxlength">Your username is too long!</p>
+                  <p ng-message="required">A username is required!</p>
+                </div>
+              </div>
+
+                <!-- PASSWORD INPUT -->
+
+                <div ng-class="{'has-error': userForm.username.$touched && userForm.username.$invalid}">
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input ng-model="password" type="password" placeholder="">
+                    <input ng-model="password" name="password" type="password" placeholder="Type a password"
+                    ng-minlength="6" required>
                 </label>
+                <div class="help-block" ng-messages="userForm.password.$error" ng-if="userForm.password.$touched">
+                  <p ng-message="minlength">Your password is too short!</p>
+                  <p ng-message="required">You must have a password!</p>
+                </div>
+              </div>
+
+                <!--  REPEAT PASSWORD INPUT-->
                 <label class="item item-input">
-                    <span class="input-label">Repeat Password</span>
-                    <input ng-model="confirmationPassword"type="password" placeholder="">
+                    <span class="input-label">Confirm Password</span>
+                   <input ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="Re-type your password"
+                    required match-password="password">
                 </label>
+                <div class="help-block" ng-messages="userForm.confirmPassword.$error" ng-if="userForm.confirmPassword.$touched">
+                  <p ng-message="passwordMatch">Your passwords did not match.</p>
+                  <p ng-message="required">You must confirm your password!</p>
+                </div>
+
             </ion-list>
             <div class="spacer" style="height: 100px;"></div>
-            <input id="register-button3" class="button button-stable  button-block" type="submit" value="Sign Up">
+            <!--  BUTTON INPUT-->
+            <input id="register-button3" class="button button-stable  button-block" type="submit" value="Sign Up" ng-disabled="userForm.$invalid" >
         </form>
     </ion-content>
 </ion-view>
