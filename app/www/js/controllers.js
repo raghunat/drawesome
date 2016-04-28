@@ -28,9 +28,11 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('boardCtrl', ['$scope', function ($scope) {
-  var canvasWidth = 400;
-  var canvasHeight = 400;
+.controller('boardCtrl', ['$scope', function($scope) {
+  var screenWidth = screen.width;
+  var screenHeight = screen.height;
+  var canvasWidth = screenWidth * 0.5;
+  var canvasHeight = screenHeight * 0.55;
 
   //Colors
   var colorRed = "#FF0000";
@@ -41,7 +43,6 @@ angular.module('app.controllers', [])
 
   var curColor = colorGreen;
   var clickColor = new Array();
-
   var clickTool = new Array();
   var curTool = "crayon";
 
@@ -50,14 +51,15 @@ angular.module('app.controllers', [])
   canvas.setAttribute('width', canvasWidth);
   canvas.setAttribute('height', canvasHeight);
   canvas.setAttribute('id', 'canvas');
+  canvas.style.border = "1px solid";
   canvasDiv.appendChild(canvas);
-  if(typeof G_vmlCanvasManager != 'undefined'){
-          canvas = G_vmlCanvasManager.initElement(canvas);
+  if (typeof G_vmlCanvasManager != 'undefined') {
+    canvas = G_vmlCanvasManager.initElement(canvas);
   }
   context = canvas.getContext("2d");
 
   //When the mouse is clicked
-  $('#canvas').mousedown(function(e){
+  $('#canvas').mousedown(function(e) {
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
 
@@ -67,20 +69,20 @@ angular.module('app.controllers', [])
   });
 
   //Records drawing when mouse is held
-  $('#canvas').mousemove(function(e){
-    if(paint){
+  $('#canvas').mousemove(function(e) {
+    if (paint) {
       addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
       redraw();
     }
   });
 
   //When mouse is unclicked
-  $('#canvas').mouseup(function(e){
+  $('#canvas').mouseup(function(e) {
     paint = false;
   });
 
   //When mouse off the paper
-  $('#canvas').mouseleave(function(e){
+  $('#canvas').mouseleave(function(e) {
     paint = false;
   });
   // clear
@@ -92,55 +94,63 @@ angular.module('app.controllers', [])
   var clickDrag = new Array();
   var paint;
 
-  function addClick(x,y,dragging)
-  {
+  function addClick(x, y, dragging) {
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
     clickColor.push(curColor);
-
   }
+
   //Event listeners for html buttons
   document.getElementById("clearCanvas").addEventListener("click", clearSetUp);
-  document.getElementById("redColor").addEventListener("click", function(){changeColor(colorRed)});
-  document.getElementById("blueColor").addEventListener("click", function(){changeColor(colorBlue)});
-  document.getElementById("yellowColor").addEventListener("click", function(){changeColor(colorYellow)});
-  document.getElementById("greenColor").addEventListener("click", function(){changeColor(colorGreen)});
-  document.getElementById("eraseColor").addEventListener("click", function(){changeColor(colorErase)});
+  document.getElementById("redColor").addEventListener("click", function() {
+    changeColor(colorRed)
+  });
+  document.getElementById("blueColor").addEventListener("click", function() {
+    changeColor(colorBlue)
+  });
+  document.getElementById("yellowColor").addEventListener("click", function() {
+    changeColor(colorYellow)
+  });
+  document.getElementById("greenColor").addEventListener("click", function() {
+    changeColor(colorGreen)
+  });
+  document.getElementById("eraseColor").addEventListener("click", function() {
+    changeColor(colorErase)
+  });
 
   //Drawing function
-      //Canvas clear
-  function clearSetUp(){
+  //Canvas clear
+  function clearSetUp() {
     clickX = new Array();
-  		clickY = new Array();
-  		clickDrag = new Array();
-      clickDrag = new Array();
-      clickColor = new Array();
-  		clearCanvas();
+    clickY = new Array();
+    clickDrag = new Array();
+    clickDrag = new Array();
+    clickColor = new Array();
+    clearCanvas();
   }
 
-  function clearCanvas()
-  {
-  	context.clearRect(0, 0, canvasWidth, canvasHeight);
+  function clearCanvas() {
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
   }
 
 
-  function changeColor(color){
+  function changeColor(color) {
     curColor = color;
   }
 
-  function redraw(){
-    context.clearRect(0,0, context.canvas.width, context.canvas.height);
+  function redraw() {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
     context.lineJoin = "round";
     context.lineWidth = 5;
 
-    for(var i = 0; i < clickX.length; i++){
+    for (var i = 0; i < clickX.length; i++) {
       context.beginPath();
-      if(clickDrag[i] && i){
-        context.moveTo(clickX[i-1], clickY[i-1]);
-      }else{
-        context.moveTo(clickX[i]-1, clickY[i]);
+      if (clickDrag[i] && i) {
+        context.moveTo(clickX[i - 1], clickY[i - 1]);
+      } else {
+        context.moveTo(clickX[i] - 1, clickY[i]);
       }
       context.lineTo(clickX[i], clickY[i]);
       context.closePath();
@@ -150,9 +160,13 @@ angular.module('app.controllers', [])
   }
 
   function downloadCanvas(link, canvasId, filename) {
-      link.href = document.getElementById(canvasId).toDataURL();
-      link.download = filename;
-      console.log("finished");
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+    console.log("finished");
+  }
+
+  function doSomething1() {
+    console.log("here i am");
   }
 
   // document.getElementById('save').addEventListener('click', function() {
