@@ -3,26 +3,66 @@ var http = require('http');
 var express = require('express');
 
 
-var server =express();
+var server = express();
 var fullServer = http.Server(server);
 var io = require('socket.io')(fullServer);
 
-server.get('/', function (req, res){
-  res.sendFile(__dirname + '/index.html');
+/*****************
+// On client side,
+// Include socket.io
+<script src="/socket.io/socket.io.js"></script>
+// js code
+var socket = io();
+socket.on('connection', function(userId, socket) {
+  // When joining room
+  socket.emit('joinRoom', roomId)
+
+  // When creating new room, will auto set user namespace
+  socket.emit('createRoom');
 });
 
-io.on('stroke', function(socket){
-  console.log("Stroke");
-});
+  // Be able to recieve 'sendAllStrokes from current namespace'
+  socket.on('sendAllStrokes', function(allStrokes) {
+    // Function that compares serverAllstrokes with clientAllStrokes
+    // New strokes will be drawn
+  });
 
-io.on('joinRoom', function(){
-  console.log("Someone joined");
+  // After every stroke, send to allStrokes
+  socket.emit('sendNewStroke', newStroke);
 });
+*****************/
+// On login should connect user
+io.on('connection', function (userId, socket) {
+  var socketUser = userId;
+  var socketRoom = '';
 
-io.on('createRoom', function(){
-  console.log("Room created");
+  socket.on('joinRoom', function(roomId){
+    socketRoom = roomId;
+    socket.join(roomId);
+  });
+  socket.on('createRoom', function(){
+    // Function to create room
+    // function checkRoomIds () {
+    //  when(roomIds[i] == available) {
+    //   createRoom(i);
+    //  }
+    // }
+    // Return roomId to user
+    socketRoom = roomId;
+    socket.join(roomId);
+  });
 });
+/************
+//On created room
+// Every 500ms, send users all strokes
+setInterval(function() {
+  socket.emit('sendAllStrokes', allStrokes);
+}, 500);
 
+socket.on(sendNewStroke', function(newStroke){
+  allStrokes.push(newStroke);
+});
+************/
 fullServer.listen(3000, function(){
   console.log('Listening on port 3000');
 });
