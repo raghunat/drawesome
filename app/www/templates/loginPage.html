@@ -2,51 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
     <!-- semantic-ui -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="css/login.css" rel="stylesheet">
   </head>
   <body ng-app="app">
-    <ion-view title="Login Page" id="page1">
-        <ion-content padding="true" class="has-header">
+    <ion-view title="Please sign in" id="page1">
+        <ion-content padding="true" scroll="false">
             <form class="list">
                 <div style="text-align:center;">
-                    <img src="img/logo.PNG" width="100%" height="100%">
+                    <img src="img/logo.png" class="logo">
                 </div>
 
-                <div class="ui two column middle aligned very relaxed stackable grid">
-                <div class="column">
-                  <div class="ui form">
-                    <div class="field">
-                      <label>Username</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="Username">
-                        <i class="user icon"></i>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label>Password</label>
-                      <div class="ui left icon input">
-                        <input type="password">
-                        <i class="lock icon"></i>
-                      </div>
-                    </div>
-                    <div style="width:100%;"ui-sref="main" class="ui blue submit button">Login</div>
-                  </div>
+                <div class="ui input left icon text-input1">
+                  <i class="users icon"></i>
+                  <input type="text" class="text-input" placeholder="Username">
                 </div>
-                <div class="ui vertical divider">
+
+                <div class="ui input left icon">
+                  <i class="lock icon"></i>
+                  <input type="password" class="text-input" placeholder="Password">
+                </div>
+
+                <button ui-sref="main" id="loginPage-button1" class="ui green basic button button-positive button-block">
+                  Login <i class="btn-icons angle right icon"></i>
+                </button>
+
+                <div class="ui horizontal divider">
                   Or
                 </div>
-                <div class="center aligned column">
-                  <div style="width:100%;" ui-sref="register" class="ui green labeled icon button">
-                    <i class="signup icon"></i>
-                    Sign Up
-                  </div>
-                </div>
-              </div>
 
+                <button ui-sref="register" id="loginPage-button2" class="ui grey basic button button-stable button-block">
+                  Create An Account <i class="btn-icons add user icon"></i>
+                </button>
             </form>
         </ion-content>
     </ion-view>

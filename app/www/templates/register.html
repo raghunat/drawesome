@@ -1,56 +1,30 @@
-<html>
-  <head>
-      <meta charset="utf-8">
-      <title></title>
-      <!-- semantic-ui -->
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
-      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  </head>
-  <body ng-app="app">
-      <ion-view title="Register" id="page2">
-          <ion-content padding="true" class="has-header">
-              <form class="list">
-                  <ion-list>
-                    <div class="ui input" style="width:100%">
-                      <input type="text" placeholder="Name">
-                    </div>
-
-                    <div class="spacer" style="height: 5px;"></div>
-
-                    <div class="ui input" style="width:100%">
-                      <input type="email" placeholder="Email">
-                    </div>
-
-                    <div class="spacer" style="height: 5px;"></div>
-
-                    <div class="ui input" style="width:100%">
-                      <input type="tel" placeholder="Phone #">
-                    </div>
-
-                    <div class="spacer" style="height: 5px;"></div>
-
-                    <div class="ui input" style="width:100%">
-                      <input type="text" placeholder="Username">
-                    </div>
-
-                    <div class="spacer" style="height: 5px;"></div>
-
-                    <div class="ui input" style="width:100%">
-                      <input type="password" placeholder="Password">
-                    </div>
-
-                    <div class="spacer" style="height: 5px;"></div>
-
-                    <div class="ui input" style="width:100%">
-                      <input type="password" placeholder="Repeat Password">
-                    </div>
-
-                  </ion-list>
-                  <div class="spacer" style="height: 50px;"></div>
-                  <button id="register-button3" class="positive ui button button-stable  button-block">Sign up</button>
-              </form>
-          </ion-content>
-      </ion-view>
-    </body>
-</html>
+<link href="css/register.css" rel="stylesheet">
+<ion-view title="Create An Account" id="page2">
+    <ion-content padding="true" class="has-header" scroll="false">
+      <p>Hello!<br>Welcome to</p>
+      <img src="img/logo.png" class="register_logo">
+        <form class="list">
+            <ion-list>
+              <div class="ui input icon">
+                <input type="text" placeholder="Name">
+              </div>
+              <div class="ui input icon">
+                <input type="email" placeholder="Email">
+              </div>
+              <div class="ui input icon">
+                <input type="tel" placeholder="Phone">
+              </div>
+              <div class="ui input icon">
+                <input type="text" placeholder="Username">
+              </div>
+              <div class="ui input icon">
+                <input type="password" placeholder="Password">
+              </div>
+              <div class="ui input icon">
+                <input type="password" placeholder="Confirm Password">
+              </div>
+            </ion-list>
+            <button id="register-button3" class="ui green basic button button-positive button-block">Register <i class="btn-icons angle right icon"></i></button>
+        </form>
+    </ion-content>
+</ion-view>
