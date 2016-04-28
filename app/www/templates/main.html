@@ -1,17 +1,27 @@
+<link rel="stylesheet" href="css/main.css">
 <ion-view title="Main" id="page6">
   <ion-content padding="true" class="has-header">
-    <h1 id="main-heading1" style="color:#000000;text-align:center;">Welcome back!</h1>
-    <div class="list card">
-      <div class="item item-divider">Your Profile</div>
-      <ion-list>
-        <ion-item class="item-thumbnail-left">
-          <img src="img/CjEAbdLvT5WIdpIyWQxn_profile.gif">
-          <h2>{Username}</h2>
-          <p>+'s'</p>
-        </ion-item>
-      </ion-list>
-      <a ui-sref="myProfile" id="main-button12" class="button button-stable  button-block">View Profile</a>
-    </div>
+
+      <div class="list card">
+        <div class="item item-divider">Profile</div>
+        <div class="item item-body">
+          <ion-list>
+            <h2 style="left:15px;" class="ui header">
+                <img  src="img/profilepic.png" class="ui center aligned circular image">
+                <div class="content">
+                  Username
+                  <div class="sub header">Fredonia, NY</div>
+                </div>
+            </h2>
+
+            <div ui-sref="myProfile" class="ui center button" style="width:100%;">
+                View Profile
+              </div>
+          </ion-list>
+
+        </div>
+      </div>
+
     <div class="list card">
       <div class="item item-divider">Boards Near You</div>
       <div class="item item-body">
@@ -22,12 +32,17 @@
             <p>Item</p>
           </ion-item>
         </ion-list>
-        <button id="main-button14" class="button button-stable  button-block">View More</button>
+        <div  class="ui center button" style="width:100%;">
+            View More
+          </div>
       </div>
     </div>
 
-    <button ui-sref="createBoard" id="main-button11" class="button button-balanced  button-block">Create New Board</button>
 
+    <div ui-sref="createBoard" style="width:100%;" class="ui big teal labeled icon button">
+    Create New Board
+    <i class="add icon"></i>
+    </div>
     <div class="list card">
       <div class="item item-divider">Featured Boards</div>
       <div class="item item-body">
@@ -38,7 +53,10 @@
             <p>Item</p>
           </ion-item>
         </ion-list>
-        <button id="main-button15" class="button button-stable  button-block">View More</button>
+
+        <div  class="ui center button" style="width:100%;">
+            View More
+          </div>
       </div>
     </div>
   </ion-content>

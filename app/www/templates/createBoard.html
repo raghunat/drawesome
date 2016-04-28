@@ -1,17 +1,21 @@
+<link href="css/create.css" rel="stylesheet">
 <ion-view title="Create Board" id="page7">
     <ion-content padding="true" class="has-header">
+      <p>Create a new board!<br>Draw with your peers.</p>
+      <img src="img/logo.png" class="create_logo">
         <form class="list"></form>
         <form class="list">
-            <label class="item item-input" name="boardName">
-                <span class="input-label">Name of Board</span>
-                <input type="text" placeholder="">
-            </label>
-            <ion-checkbox name="feature1">Feature 1</ion-checkbox>
-            <ion-checkbox name="feature2">Feature 2</ion-checkbox>
-            <ion-checkbox name="feature3">Feature 3</ion-checkbox>
+            <div class="ui input text_input">
+                <input type="text" class="text-input" placeholder="Name of board">
+            </div>
+            <ion-checkbox class="checkbox" name="feature1">Feature 1</ion-checkbox>
+            <ion-checkbox class="checkbox" name="feature2">Feature 2</ion-checkbox>
+            <ion-checkbox class="checkbox" name="feature3">Feature 3</ion-checkbox>
         </form>
         <form class="list"></form>
-        <a ui-sref="board" id="createBoard-button13" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block">Create Board!</a>
+        <button ui-sref="board" id="createBoard-button13" class="ui green basic button button-stable button-block">
+          Create Board <i class="angle right icon"></i>
+        </button>
         <!-- <button ui-sref="board" id="createBoard-button13" style="border-radius:0px 0px 0px 0px;" class="button button-balanced  button-block">Create Board!</button> -->
     </ion-content>
 </ion-view>

@@ -1,34 +1,30 @@
-<ion-view title="Register" id="page2">
-    <ion-content padding="true" class="has-header">
+<link href="css/register.css" rel="stylesheet">
+<ion-view title="Create An Account" id="page2">
+    <ion-content padding="true" class="has-header" scroll="false">
+      <p>Hello!<br>Welcome to</p>
+      <img src="img/logo.png" class="register_logo">
         <form class="list">
             <ion-list>
-                <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Email</span>
-                    <input type="email" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Phone #</span>
-                    <input type="tel" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Repeat Password</span>
-                    <input type="password" placeholder="">
-                </label>
+              <div class="ui input icon">
+                <input type="text" placeholder="Name">
+              </div>
+              <div class="ui input icon">
+                <input type="email" placeholder="Email">
+              </div>
+              <div class="ui input icon">
+                <input type="tel" placeholder="Phone">
+              </div>
+              <div class="ui input icon">
+                <input type="text" placeholder="Username">
+              </div>
+              <div class="ui input icon">
+                <input type="password" placeholder="Password">
+              </div>
+              <div class="ui input icon">
+                <input type="password" placeholder="Confirm Password">
+              </div>
             </ion-list>
-            <div class="spacer" style="height: 100px;"></div>
-            <button id="register-button3" class="button button-stable  button-block">Sign up</button>
+            <button id="register-button3" class="ui green basic button button-positive button-block">Register <i class="btn-icons angle right icon"></i></button>
         </form>
     </ion-content>
 </ion-view>

@@ -1,0 +1,51 @@
+.icon{
+  margin: -10px 0px 0px 0px !important;
+}
+
+p{
+  margin: 15px 0px 0px 0px !important;
+  font-size: 20px;
+  color: #000;
+  float: left;
+}
+
+.create_logo{
+  margin: 0px 0px 0px 0px;
+  width: 140px;
+  height: 80px;
+  float: right;
+}
+
+.text_input{
+  width: 100%;
+  background: transparent !important;
+}
+
+.text-input{
+  width: 100%;
+  height: 50px !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: solid 1px #E6E6E6 !important;
+  font-size: 18px !important;
+}
+
+.checkbox{
+  border: none !important;
+  width: 100%;
+  margin: 12px 0px 0px 0px;
+}
+
+#createBoard-button13{
+    height: 50px !important;
+    font-size: 18px !important;
+
+}
+
+#createBoard-button13:active{
+  background: #56B950 !important;
+  color: #FFFFFF !important;
+}
