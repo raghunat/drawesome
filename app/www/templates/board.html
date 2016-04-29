@@ -1,24 +1,63 @@
-<ion-view title="Board" id="page8">
+<!-- <style media="screen">
+  #color-slider {
+    background: url("../img/gradient.png");
+  }
 
+  #box {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+  }
+
+</style> -->
+<ion-view title="Board Name" id="page8">
   <ion-nav-buttons side="right">
-        <button class="button icon ion-person-stalker" ng-click="doSomething()">
-        </button>
-    </ion-nav-buttons>
+    <button class="button icon ion-person-stalker" ng-click="doSomething()"></button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header" scroll="false">
+    <h3 style="text-align:center;">Location</h3>
+    <div>
+      <custom-canvas></custom-canvas>
+    </div>
 
-    <ion-content padding="true" class="has-header" scroll="false">
-        <h3 style="text-align:center;" >Theme or Location</h3>
-        <div>
-            <custom-canvas></custom-canvas>
+    <div class="colorPicker">
+      Select number : <span>{{color}}</span>      <div class="box" style="width:20px;height:20px;border:1px solid;background-color:{{color}}"></div>
+        <div class="range range-positive "  style="background:url(../img/gradient.png) repeat-x; padding:10px;width:200px; height:38px;">
+          <input type="range" name="color" min="0" max="360" value="{{data.first}}" ng-model="data.first" style="width:200px;">
         </div>
-    </ion-content>
-    <ion-footer-bar>
-        <div class="button-bar">
-          <button ng-click="doSomething1()" class="button button-positive icon ion-android-color-palette"></button>
-          <button ng-click="doSomething2()" class="button button-positive icon ion-ios-undo"></button>
-          <button ng-click="doSomething3()" class="button button-positive icon ion-ios-redo"></button>
-          <button ng-click="doSomething4()" class="button button-positive icon ion-paintbrush"></button>
-          <button ng-click="doSomething5()" class="button button-positive icon ion-edit"></button>
-          <button ng-click="doSomething6()" class="button button-positive icon ion-ios-close"></button>
-        </div>
-    </ion-footer-bar>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar>
+    <div class="button-bar">
+
+      <button class="button button-positive icon ion-android-color-palette" ng-click="sliderColor()">
+        Change Color
+      </button>
+      
+      <button id="greenColor">Green</button>
+      <button id="redColor">Red</button>
+      <button id="blueColor">Blue</button>
+      <button id="yellowColor">Yellow</button>
+
+      <button id="save" type="button" class="button button-positive">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+      </button>
+
+      <button ng-click="doSomething2()" class="button button-positive icon ion-ios-undo"></button>
+      <button ng-click="doSomething3()" class="button button-positive icon ion-ios-redo"></button>
+      <button id="eraseColor" class="button button-positive">
+        <i class="fa fa-eraser" aria-hidden="true"></i>
+      </button>
+      <button id="paintBrush" class="button button-positive">
+        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+      </button>
+      <button id="pencil" class="button button-positive">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
+      <button id="clearCanvas" type="button" class="button button-positive">
+        <i class="fa fa-close" aria-hidden="true"></i>
+      </button>
+    </div>
+  </ion-footer-bar>
 </ion-view>

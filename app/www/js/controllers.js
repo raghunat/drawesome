@@ -29,6 +29,22 @@ angular.module('app.controllers', [])
 })
 
 .controller('boardCtrl', ['$scope', function($scope) {
+  // Adjusted canvas size, to per screen. Should be a good ratio...
+  //
+  $scope.data = {
+    first: '0',
+    second: '100%',
+    third: '50%'
+  };
+  $scope.sliderColor = function() {
+    // console.log($scope.data.first);
+    // console.log($scope.data.second);
+    // console.log($scope.data.third);
+    $scope.color = "hsl(" + $scope.data.first + "," + $scope.data.second + "," + $scope.data.third + ")"
+    console.log($scope.color);
+    changeColor($scope.color);
+  }
+
   var screenWidth = screen.width;
   var screenHeight = screen.height;
   var canvasWidth = screenWidth * .185;
@@ -51,7 +67,7 @@ angular.module('app.controllers', [])
   canvas.setAttribute('width', canvasWidth);
   canvas.setAttribute('height', canvasHeight);
   canvas.setAttribute('id', 'canvas');
-  canvas.style.border = "1px solid";
+  canvas.style.border = "1px solid"; //helps distinguish board from whitespace
   canvasDiv.appendChild(canvas);
   if (typeof G_vmlCanvasManager != 'undefined') {
     canvas = G_vmlCanvasManager.initElement(canvas);
@@ -118,6 +134,16 @@ angular.module('app.controllers', [])
   document.getElementById("eraseColor").addEventListener("click", function() {
     changeColor(colorErase)
   });
+  // document.getElementById("paintBrush").addEventListener("click",function() {
+  //   changeWidth(10);
+  // })
+  // document.getElementById("pencil").addEventListener("click",function() {
+  //   changeWidth(5);
+  // })
+
+  // function changeWidth(newWidth){
+  //   context.lineWidth = newWidth;
+  // }
 
   //Drawing function
   //Canvas clear
@@ -133,7 +159,6 @@ angular.module('app.controllers', [])
   function clearCanvas() {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
   }
-
 
   function changeColor(color) {
     curColor = color;
@@ -163,10 +188,6 @@ angular.module('app.controllers', [])
     link.href = document.getElementById(canvasId).toDataURL();
     link.download = filename;
     console.log("finished");
-  }
-
-  function doSomething1() {
-    console.log("here i am");
   }
 
   // document.getElementById('save').addEventListener('click', function() {

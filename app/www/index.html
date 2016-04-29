@@ -6,8 +6,11 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <!-- custom stylesheet  -->
+    <link rel="stylesheet" href="lib/master.css" media="screen" title="no title" charset="utf-8">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <!-- <script src="lib/angular/angular.js" charset="utf-8"></script> -->
+    <!-- add fontawesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <!-- add jquery here - in order to draw-->
     <!-- if added before ionic.js - creates errors  -->
@@ -29,13 +32,13 @@
     <script src="js/strokes.js"></script>
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
-  <div>
     <div>
+      <div>
         <ion-nav-bar class="bar-stable" align-title="center">
-            <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
-            <ion-nav-title>
-              <img src="img/logo.png">
-            </ion-nav-title>
+          <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+          <ion-nav-title>
+            <img src="img/logo.png">
+          </ion-nav-title>
         </ion-nav-bar>
         <ion-nav-view>
           <!-- part where the templates are going to be injected
@@ -43,15 +46,15 @@
 
         </ion-nav-view>
         <ion-view title="Drawesome" id="page3">
-            <ion-content padding="true" class="has-header">
-                <div style="text-align:center;">
-                    <img src="img/logo.png" width="100%" height="auto">
-                </div>
-                <a ui-sref="loginPage" id="drawesome-button4" class="button button-positive  button-block">Login</a>
-                <a ui-sref="register" id="drawesome-button5" class="button button-stable  button-block">Register</a>
-            </ion-content>
+          <ion-content padding="true" class="has-header">
+            <div style="text-align:center;">
+              <img src="img/logo.png" width="100%" height="auto">
+            </div>
+            <a ui-sref="loginPage" id="drawesome-button4" class="button button-positive  button-block">Login</a>
+            <a ui-sref="register" id="drawesome-button5" class="button button-stable  button-block">Register</a>
+          </ion-content>
         </ion-view>
+      </div>
     </div>
-</div>
   </body>
 </html>

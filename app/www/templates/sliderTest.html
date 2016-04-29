@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<style media="screen">
+  #color-slider {
+  background:url(http://s23.postimg.org/crqwaoc9n/gradient.png) repeat-x;
+	p-left:200px;
+}
+
+#box {
+  width:10px;
+  height:10px;
+	margin-left:25px;
+  border:1px solid #000;
+}
+</style>
+</head>
+<body>
+  <div id="color-slider" style="height: 200px;">  <div id="box"></div></div>
+
+</body>
+<script type="text/javascript">
+  $(function() {
+	var box = $('#box')[0];
+
+	$("#color-slider").slider({
+		orientation: "vertical",
+		min: 0,
+		max: 360,
+		value: 0,
+		slide: function(event, ui) {
+			box.style.background = 'hsl(' + ui.value + ', 100%, 50%)';
+		}
+	});
+});
+</script>
+</html>
