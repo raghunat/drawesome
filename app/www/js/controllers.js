@@ -55,7 +55,7 @@ angular.module('app.controllers', [])
   // var colorBlue = "#4033FF";
   // var colorYellow = "#ffcf33";
   // var colorGreen = "#397D02";
-  // var colorErase = "#FFFFFF";
+  var colorErase = "#FFFFFF";
 
   var curColor = $scope.color;
   var clickColor = new Array();
