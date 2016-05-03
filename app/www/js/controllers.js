@@ -29,35 +29,35 @@ angular.module('app.controllers', [])
 })
 
 .controller('boardCtrl', ['$scope', function($scope) {
-  // Adjusted canvas size, to per screen. Should be a good ratio...
-  //
+
+
+  //Color Slider
   $scope.data = {
     first: '0',
     second: '100%',
     third: '50%'
-  };
+  }
+  $scope.color = "hsl(" + $scope.data.first + "," + $scope.data.second + "," + $scope.data.third + ")";
+
   $scope.sliderColor = function() {
-    // console.log($scope.data.first);
-    // console.log($scope.data.second);
-    // console.log($scope.data.third);
-    $scope.color = "hsl(" + $scope.data.first + "," + $scope.data.second + "," + $scope.data.third + ")"
-    console.log($scope.color);
+    $scope.color = "hsl(" + $scope.data.first + "," + $scope.data.second + "," + $scope.data.third + ")";
     changeColor($scope.color);
   }
 
+  // Adjusted canvas size, to per screen. Should be a good ratio...
   var screenWidth = screen.width;
   var screenHeight = screen.height;
-  var canvasWidth = screenWidth * .185;
-  var canvasHeight = screenHeight * 0.45;
+  var canvasWidth = screenWidth * .25;
+  var canvasHeight = screenHeight * 0.55;
 
-  //Colors
-  var colorRed = "#FF0000";
-  var colorBlue = "#4033FF";
-  var colorYellow = "#ffcf33";
-  var colorGreen = "#397D02";
-  var colorErase = "#FFFFFF";
+  // //Colors
+  // var colorRed = "#FF0000";
+  // var colorBlue = "#4033FF";
+  // var colorYellow = "#ffcf33";
+  // var colorGreen = "#397D02";
+  // var colorErase = "#FFFFFF";
 
-  var curColor = colorGreen;
+  var curColor = $scope.color;
   var clickColor = new Array();
   var clickTool = new Array();
   var curTool = "crayon";
@@ -119,31 +119,31 @@ angular.module('app.controllers', [])
 
   //Event listeners for html buttons
   document.getElementById("clearCanvas").addEventListener("click", clearSetUp);
-  document.getElementById("redColor").addEventListener("click", function() {
-    changeColor(colorRed)
-  });
-  document.getElementById("blueColor").addEventListener("click", function() {
-    changeColor(colorBlue)
-  });
-  document.getElementById("yellowColor").addEventListener("click", function() {
-    changeColor(colorYellow)
-  });
-  document.getElementById("greenColor").addEventListener("click", function() {
-    changeColor(colorGreen)
-  });
+  // document.getElementById("redColor").addEventListener("click", function() {
+  //   changeColor(colorRed)
+  // });
+  // document.getElementById("blueColor").addEventListener("click", function() {
+  //   changeColor(colorBlue)
+  // });
+  // document.getElementById("yellowColor").addEventListener("click", function() {
+  //   changeColor(colorYellow)
+  // });
+  // document.getElementById("greenColor").addEventListener("click", function() {
+  //   changeColor(colorGreen)
+  // });
   document.getElementById("eraseColor").addEventListener("click", function() {
     changeColor(colorErase)
   });
-  // document.getElementById("paintBrush").addEventListener("click",function() {
-  //   changeWidth(10);
-  // })
-  // document.getElementById("pencil").addEventListener("click",function() {
-  //   changeWidth(5);
-  // })
+  document.getElementById("paintBrush").addEventListener("click",function() {
+    changeWidth(10);
+  })
+  document.getElementById("pencil").addEventListener("click",function() {
+    changeWidth(5);
+  })
 
-  // function changeWidth(newWidth){
-  //   context.lineWidth = newWidth;
-  // }
+  function changeWidth(newWidth){
+    context.lineWidth = newWidth;
+  }
 
   //Drawing function
   //Canvas clear

@@ -1,44 +1,53 @@
-<!-- <style media="screen">
-  #color-slider {
-    background: url("../img/gradient.png");
+<style>
+  #colorPicker {
+    display: none;
   }
 
-  #box {
-    width: 10px;
-    height: 10px;
-    border: 1px solid #000;
+  #slider {
+    background: url(../img/gradient.png) repeat-y;
+    width: 240px;
+    height: 20px;
+    border-radius: 50px;
+    border: 2px solid;
   }
 
-</style> -->
+  #color {
+    width: 240px;
+    height: 20px;
+  }
+
+  custom-canvas {
+    text-align: center;
+    border-radius: 10px;
+  }
+</style>
 <ion-view title="Board Name" id="page8">
   <ion-nav-buttons side="right">
     <button class="button icon ion-person-stalker" ng-click="doSomething()"></button>
   </ion-nav-buttons>
   <ion-content padding="true" class="has-header" scroll="false">
-    <h3 style="text-align:center;">Location</h3>
+    <h3 style="text-align:center;">location</h3>
     <div>
       <custom-canvas></custom-canvas>
     </div>
+    <div class="box" style="width:20px;height:20px;border:1px solid;background-color:{{color}}"></div>
 
-    <div class="colorPicker">
-      Select number : <span>{{color}}</span>      <div class="box" style="width:20px;height:20px;border:1px solid;background-color:{{color}}"></div>
-        <div class="range range-positive "  style="background:url(../img/gradient.png) repeat-x; padding:10px;width:200px; height:38px;">
-          <input type="range" name="color" min="0" max="360" value="{{data.first}}" ng-model="data.first" style="width:200px;"  ng-change="sliderColor()">
-        </div>
+    <div id="colorPicker">
+      <div id="color" accesskey="" class="range range-positive">
+        <input id="slider" type="range" name="color" min="0" max="360" value="{{data.first}}" ng-model="data.first" ng-change="sliderColor()">
+      </div>
     </div>
   </ion-content>
 
   <ion-footer-bar>
     <div class="button-bar">
 
-      <button class="button button-positive icon ion-android-color-palette" ng-click="sliderColor()">
-        Change Color
-      </button>
+      <button class="button button-positive icon ion-android-color-palette" onclick='$("#colorPicker").toggle()'></button>
 
-      <button id="greenColor">Green</button>
+      <!-- <button id="greenColor">Green</button>
       <button id="redColor">Red</button>
       <button id="blueColor">Blue</button>
-      <button id="yellowColor">Yellow</button>
+      <button id="yellowColor">Yellow</button> -->
 
       <button id="save" type="button" class="button button-positive">
         <i class="fa fa-floppy-o" aria-hidden="true"></i>
